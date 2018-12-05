@@ -1,0 +1,177 @@
+---
+title: "ESM 203 Assignment 4"
+author: "Priscilla Hare"
+date: "December 3, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+library(tidyverse)
+
+```
+
+current
+```{r}
+
+seaLevel <- rnorm(1000, mean = 0, sd = 3)
+
+sealevel_mean <- 0
+sealevel_hightide <- 2.5
+sealevel_lowtide <- -2.5
+sealevel_sd <-3
+
+
+
+p_greater_5_low <- pnorm(5, mean = sealevel_lowtide, sd = sealevel_sd, lower.tail = FALSE)
+p_greater_5_low  #.6%
+
+
+p_greater_5_high <- pnorm(5, mean = sealevel_hightide, sd = sealevel_sd, lower.tail = FALSE)
+p_greater_5_high  #20.2%
+
+#0.6-20.2%
+
+#### storm surge 1m
+lt_ss1 <- -2.5 + 1
+ht_ss1<- 2.5  + 1
+
+p_flood_lt_ss1 <- pnorm(5, mean = lt_ss1, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_ht_ss1 <- pnorm(5, mean = ht_ss1, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 1.5% - 30.8%
+
+####storm surge 2m
+lt_ss2 <- -2.5 + 2
+ht_ss2<- 2.5  + 2
+
+p_flood_lt_ss2 <- pnorm(5, mean = lt_ss2, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_ht_ss2 <- pnorm(5, mean = ht_ss2, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 3.3% - 43.4%
+
+####storm surge 3m
+lt_ss3 <- -2.5 + 3
+ht_ss3<- 2.5  + 3
+
+p_flood_lt_ss3 <- pnorm(5, mean = lt_ss3, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_ht_ss3 <- pnorm(5, mean = ht_ss3, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 6.7% - 56.6%
+
+
+```
+
+
+2050s scenario low estimate
+```{r}
+
+
+##### convert inches to meters
+lowestimate_2050  <- 7 *.0254
+highestimate_2050 <- 31 *.0254
+
+####low estimate scenario
+le_lt_2050 <- -2.5 + lowestimate_2050
+le_ht_2050<- 2.5 + lowestimate_2050
+
+p_flood_2050_le_lt <- pnorm(5, mean = le_lt_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_le_ht <- pnorm(5, mean = le_ht_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is .7 - 21.9 %
+
+####low estimate storm surge 1m
+le_lt_ss1_2050 <- -2.5 + lowestimate_2050 + 1
+le_ht_ss1_2050<- 2.5 + lowestimate_2050 + 1
+
+p_flood_2050_le_lt_ss1 <- pnorm(5, mean = le_lt_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_le_ht_ss1 <- pnorm(5, mean = le_ht_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 1.7% - 33%
+
+####low estimate storm surge 2m
+le_lt_ss2_2050 <- -2.5 + lowestimate_2050 + 2
+le_ht_ss2_2050<- 2.5 + lowestimate_2050 + 2
+
+p_flood_2050_le_lt_ss2 <- pnorm(5, mean = le_lt_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_le_ht_ss2 <- pnorm(5, mean = le_ht_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 3.8% - 45.7%
+
+
+
+####low estimate storm surge 3m
+le_lt_ss3_2050 <- -2.5 + lowestimate_2050 + 3
+le_ht_ss3_2050<- 2.5 + lowestimate_2050 + 3
+
+p_flood_2050_le_lt_ss3 <- pnorm(5, mean = le_lt_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_le_ht_ss3 <- pnorm(5, mean = le_ht_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 7.5% - 58.9%
+
+
+```
+
+2050s middle estimate
+```{r}
+will work the same as low and high
+```
+
+
+
+2050s high estimate
+```{r}
+####high estimate scenario
+he_lt_2050 <- -2.5 + highestimate_2050
+he_ht_2050<- 2.5 + highestimate_2050
+
+p_flood_2050_he_lt <- pnorm(5, mean = he_lt_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_he_ht <- pnorm(5, mean = he_ht_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 1.2% - 28.4 %
+
+####high estimate storm surge 1m
+he_lt_ss1_2050 <- -2.5 + highestimate_2050 + 1
+he_ht_ss1_2050<- 2.5 + highestimate_2050 + 1
+
+p_flood_2050_he_lt_ss1 <- pnorm(5, mean = he_lt_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_he_ht_ss1 <- pnorm(5, mean = he_ht_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 2.8% - 40.6%
+
+####high estimate storm surge 2m
+he_lt_ss2_2050 <- -2.5 + highestimate_2050 + 2
+he_ht_ss2_2050<- 2.5 + highestimate_2050 + 2
+
+p_flood_2050_he_lt_ss2 <- pnorm(5, mean = he_lt_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_he_ht_ss2 <- pnorm(5, mean = he_ht_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 5.8% - 53.8%
+
+
+
+####high estimate storm surge 3m
+he_lt_ss3_2050 <- -2.5 + highestimate_2050 + 3
+he_ht_ss3_2050<- 2.5 + highestimate_2050 + 3
+
+p_flood_2050_he_lt_ss3 <- pnorm(5, mean = he_lt_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_he_ht_ss3 <- pnorm(5, mean = he_ht_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 10.8% - 66.6%
+```
+
