@@ -76,6 +76,7 @@ p_flood_ht_ss3 <- pnorm(5, mean = ht_ss3, sd = sealevel_sd, lower.tail = FALSE)
 
 ##### convert inches to meters
 lowestimate_2050  <- 7 *.0254
+midestimate_2050 <- 17.5 *.0254 # avg of 11 to 24
 highestimate_2050 <- 31 *.0254
 
 ####low estimate scenario
@@ -125,7 +126,51 @@ p_flood_2050_le_ht_ss3 <- pnorm(5, mean = le_ht_ss3_2050, sd = sealevel_sd, lowe
 
 2050s middle estimate
 ```{r}
-will work the same as low and high
+
+####mid estimate scenario
+me_lt_2050 <- -2.5 + midestimate_2050
+me_ht_2050<- 2.5 + midestimate_2050
+
+p_flood_2050_me_lt <- pnorm(5, mean = me_lt_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_me_ht <- pnorm(5, mean = me_ht_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is .9 - 24.7 %
+
+####mid estimate storm surge 1m
+me_lt_ss1_2050 <- -2.5 + midestimate_2050 + 1
+me_ht_ss1_2050<- 2.5 + midestimate_2050 + 1
+
+p_flood_2050_me_lt_ss1 <- pnorm(5, mean = me_lt_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_me_ht_ss1 <- pnorm(5, mean = me_ht_ss1_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 2.2% - 36.2%
+
+####mid estimate storm surge 2m
+me_lt_ss2_2050 <- -2.5 + midestimate_2050 + 2
+me_ht_ss2_2050 <- 2.5 + midestimate_2050 + 2
+
+p_flood_2050_me_lt_ss2 <- pnorm(5, mean = me_lt_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_me_ht_ss2 <- pnorm(5, mean = me_ht_ss2_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 4.6% - 49.3%
+
+
+
+####mid estimate storm surge 3m
+me_lt_ss3_2050 <- -2.5 + midestimate_2050 + 3
+me_ht_ss3_2050 <- 2.5 + midestimate_2050 + 3
+
+p_flood_2050_me_lt_ss3 <- pnorm(5, mean = me_lt_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+p_flood_2050_me_ht_ss3 <- pnorm(5, mean = me_ht_ss3_2050, sd = sealevel_sd, lower.tail = FALSE)
+
+#range of prob is 8.8% - 62.4%
+
+
+
 ```
 
 
