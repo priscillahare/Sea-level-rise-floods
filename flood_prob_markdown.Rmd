@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 
+sl_prob <- read_csv('sl_prob.csv')
+
 ```
 
 current
@@ -222,5 +224,27 @@ p_flood_2050_he_ht_ss3 <- pnorm(5, mean = he_ht_ss3_2050, sd = sealevel_sd, lowe
 
 ```{r}
 
+sl_prob2 <- sl_prob %>% 
+  filter(model == "current" | model == "medium estimate") %>% 
+  mutate(model = case_when(
+    model == "current" ~ "Current Risk",
+    model == "medium estimate" ~ "2050 Medium Estimate"
+  )) %>% 
+    mutate(model = fct_relevel(model, "Current Risk", "Medium Estimate")) 
+
+ggplot(sl_prob2, aes(x = model, ymin = low_tide_prob, 
+         ymax = high_tide_prob, lower = low_tide_prob, upper = high_tide_prob, middle = low_tide_prob), group = model) + 
+     geom_boxplot(stat = 'identity', aes(fill = scenario)) +
+  theme_bw() +
+  theme( # remove the vertical grid lines
+           panel.grid.major.x = element_blank() ,
+           # explicitly set the horizontal lines (or they will disappear too)
+           panel.grid.major.y = element_line( size=.1, color="black" ) 
+    ) +
+  labs(y = "Flood Risk Range\n", x = " ") +
+  scale_fill_manual(values = c("skyblue1", "dodgerblue2", "blue2", "navy"), labels = c("Normal Condtions", "1m Storm Surge", "2m Storm Surge", "3m Storm Surge")) + 
+  theme(text = element_text(family = "Times New Roman")) + 
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) +
+  theme(legend.title = element_blank())
 ```
 
